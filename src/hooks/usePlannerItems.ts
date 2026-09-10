@@ -121,7 +121,7 @@ export function usePlannerItems() {
 
   const resetToSamples = useCallback(async () => {
     try {
-      const { items } = await api.resetSamples();
+      // const { items } = await api.resetSamples();
       setItems(items);
     } catch (err) {
       setError(err instanceof ApiError ? err.message : "Couldn't reset the sample content.");
