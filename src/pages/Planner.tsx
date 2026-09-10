@@ -3,7 +3,6 @@ import { Loader2, X } from "lucide-react";
 import type { PlanningItem } from "../types/planner";
 import { CATEGORIES, DEFAULT_CATEGORY_ID, getCategory } from "../data/categories";
 import { usePlannerItems } from "../hooks/usePlannerItems";
-import { useAuth } from "../auth/AuthContext";
 import Sidebar from "../components/Sidebar";
 import MobileCategoryNav from "../components/MobileCategoryNav";
 import Header, { type ViewMode } from "../components/Header";
@@ -11,7 +10,6 @@ import PasteArea, { type PasteAreaHandle } from "../components/PasteArea";
 import PlanningCard from "../components/PlanningCard";
 import EmptyState from "../components/EmptyState";
 import ImageModal from "../components/ImageModal";
-import AccountMenu from "../components/AccountMenu";
 
 const CATEGORY_KEY = "wedding-planner-artboard:selected";
 const VIEW_KEY = "wedding-planner-artboard:view";
@@ -25,7 +23,6 @@ function readStored(key: string, fallback: string): string {
 }
 
 export default function Planner() {
-  const { user, logout } = useAuth();
   const {
     loading,
     error,
@@ -77,19 +74,12 @@ export default function Planner() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const account = user && <AccountMenu user={user} onLogout={logout} />;
-
   return (
     <div className="app">
-      <Sidebar selected={selected} counts={counts} onSelect={handleSelect} account={account} />
+      <Sidebar selected={selected} counts={counts} onSelect={handleSelect} />
 
       <main className="main">
-        <MobileCategoryNav
-          selected={selected}
-          counts={counts}
-          onSelect={handleSelect}
-          account={account}
-        />
+        <MobileCategoryNav selected={selected} counts={counts} onSelect={handleSelect} />
 
         <div className="main__inner">
           <Header
