@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Heart } from "lucide-react";
 import { CATEGORIES } from "../data/categories";
 import CategoryIcon from "./CategoryIcon";
@@ -7,14 +6,13 @@ interface Props {
   selected: string;
   counts: Record<string, number>;
   onSelect: (id: string) => void;
-  account?: ReactNode;
 }
 
 /**
  * Mobile / tablet replacement for the sidebar: a compact brand row plus a
  * horizontally scrollable category strip. No permanent sidebar on small screens.
  */
-export default function MobileCategoryNav({ selected, counts, onSelect, account }: Props) {
+export default function MobileCategoryNav({ selected, counts, onSelect }: Props) {
   return (
     <div className="mobilenav">
       <div className="mobilenav__brand">
@@ -22,7 +20,6 @@ export default function MobileCategoryNav({ selected, counts, onSelect, account 
           <Heart size={14} strokeWidth={2.4} />
         </span>
         <span>Wedding Planner</span>
-        {account && <div className="mobilenav__account">{account}</div>}
       </div>
 
       <div className="mobilenav__scroll" role="tablist" aria-label="Planning categories">

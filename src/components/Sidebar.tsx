@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { Heart } from "lucide-react";
 import { CATEGORIES } from "../data/categories";
 import CategoryIcon from "./CategoryIcon";
@@ -7,10 +6,9 @@ interface Props {
   selected: string;
   counts: Record<string, number>;
   onSelect: (id: string) => void;
-  account?: ReactNode;
 }
 
-export default function Sidebar({ selected, counts, onSelect, account }: Props) {
+export default function Sidebar({ selected, counts, onSelect }: Props) {
   return (
     <aside className="sidebar">
       <div className="sidebar__brand">
@@ -41,8 +39,6 @@ export default function Sidebar({ selected, counts, onSelect, account }: Props) 
           );
         })}
       </nav>
-
-      {account && <div className="sidebar__account">{account}</div>}
     </aside>
   );
 }
